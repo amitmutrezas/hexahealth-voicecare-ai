@@ -71,7 +71,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={120} className="relative min-w-0">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-[520px]">
+          <div className="relative mx-auto aspect-[4/4.3] w-full max-w-[540px]">
             <div className="bg-glow-orange absolute inset-[-8%] rounded-full" />
             <div className="absolute inset-[6%] rounded-full border border-border-warm" />
             <div className="animate-ring absolute inset-[6%] rounded-full border border-accent/30" />
