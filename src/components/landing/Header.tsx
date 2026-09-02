@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { CalendarCheck, ChevronRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DemoFormDialog } from "./DemoFormDialog";
+
 
 const NAV = [
   { label: "Product", id: "product" },
