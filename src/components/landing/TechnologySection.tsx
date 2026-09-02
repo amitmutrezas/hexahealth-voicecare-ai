@@ -181,7 +181,7 @@ function ContextNetwork() {
 
 export function TechnologySection() {
   return (
-    <section id="technology" className="bg-dotted relative bg-background">
+    <section id="technology" className="bg-warm-deep relative">
       <div className="mx-auto max-w-[1320px] px-5 py-20 lg:px-8 lg:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-[2.75rem]">
