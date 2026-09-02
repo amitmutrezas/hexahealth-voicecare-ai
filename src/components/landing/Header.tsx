@@ -9,7 +9,7 @@ const NAV = [
   { label: "Technology", id: "technology" },
   { label: "Use Cases", id: "use-cases" },
   { label: "How it works", id: "how-it-works" },
-  { label: "About Us", id: "about" },
+  { label: "FAQs", id: "faqs" },
 ];
 
 function scrollToId(id: string) {
