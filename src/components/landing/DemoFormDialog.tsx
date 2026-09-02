@@ -109,7 +109,7 @@ export function DemoFormDialog({ children }: { children: ReactNode }) {
               <div className="space-y-2">
                 <Label htmlFor="lead-name">Name</Label>
                 <Input id="lead-name" name="name" maxLength={100} autoComplete="name" />
-                {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+                {errors['name'] && <p className="text-xs text-destructive">{errors['name']}</p>}
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -122,8 +122,8 @@ export function DemoFormDialog({ children }: { children: ReactNode }) {
                     inputMode="numeric"
                     autoComplete="tel"
                   />
-                  {errors.phone && (
-                    <p className="text-xs text-destructive">{errors.phone}</p>
+                  {errors['phone'] && (
+                    <p className="text-xs text-destructive">{errors['phone']}</p>
                   )}
                 </div>
                 <div className="space-y-2">
@@ -135,8 +135,8 @@ export function DemoFormDialog({ children }: { children: ReactNode }) {
                     maxLength={255}
                     autoComplete="email"
                   />
-                  {errors.email && (
-                    <p className="text-xs text-destructive">{errors.email}</p>
+                  {errors['email'] && (
+                    <p className="text-xs text-destructive">{errors['email']}</p>
                   )}
                 </div>
               </div>
@@ -149,8 +149,8 @@ export function DemoFormDialog({ children }: { children: ReactNode }) {
                   maxLength={120}
                   autoComplete="organization"
                 />
-                {errors.company && (
-                  <p className="text-xs text-destructive">{errors.company}</p>
+                {errors['company'] && (
+                  <p className="text-xs text-destructive">{errors['company']}</p>
                 )}
               </div>
 
@@ -191,8 +191,8 @@ export function DemoFormDialog({ children }: { children: ReactNode }) {
                     ))}
                   </PopoverContent>
                 </Popover>
-                {errors.useCases && (
-                  <p className="text-xs text-destructive">{errors.useCases}</p>
+                {errors['useCases'] && (
+                  <p className="text-xs text-destructive">{errors['useCases']}</p>
                 )}
               </div>
 
