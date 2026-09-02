@@ -1,112 +1,136 @@
 import { useState, type FormEvent } from "react";
-import { ChevronDown, Phone } from "lucide-react";
+import { Phone, PartyPopper } from "lucide-react";
+import { z } from "zod";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-const INDIAN_PHONE = /^[6-9]\d{9}$/;
-
-/**
- * Phone capture for the "Try an agent" experience.
- * Telephony/API integration can be wired into `requestAgentCall` later.
- */
-async function requestAgentCall(phone: string): Promise<void> {
-  // Placeholder: replace with a server function that triggers the outbound call.
-  void phone;
-}
+const schema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100),
+  email: z.string().trim().email("Enter a valid email address").max(255),
+  company: z.string().trim().min(1, "Company is required").max(120),
+});
 
 export function PhoneAgentCTA() {
-  const [phone, setPhone] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
-  const [pending, setPending] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const onSubmit = async (e: FormEvent) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const digits = phone.replace(/\D/g, "").slice(-10);
-    if (!phone.trim()) {
-      setSuccess(false);
-      setError("Please enter your phone number");
+    const fd = new FormData(e.currentTarget);
+    const result = schema.safeParse({
+      name: String(fd.get("name") ?? ""),
+      email: String(fd.get("email") ?? ""),
+      company: String(fd.get("company") ?? ""),
+    });
+    if (!result.success) {
+      const next: Record<string, string> = {};
+      for (const issue of result.error.issues) {
+        const key = String(issue.path[0]);
+        if (!next[key]) next[key] = issue.message;
+      }
+      setErrors(next);
       return;
     }
-    if (!INDIAN_PHONE.test(digits)) {
-      setSuccess(false);
-      setError("Enter a valid 10-digit Indian mobile number");
-      return;
+    setErrors({});
+    setSubmitted(true);
+  };
+
+  const handleOpenChange = (next: boolean) => {
+    setOpen(next);
+    if (!next) {
+      setSubmitted(false);
+      setErrors({});
     }
-    setError(null);
-    setPending(true);
-    await requestAgentCall(digits);
-    setPending(false);
-    setSuccess(true);
   };
 
   return (
     <div className="w-full max-w-xl">
-      <form
-        onSubmit={onSubmit}
-        className="flex w-full flex-col gap-2 rounded-[2rem] border border-border bg-card p-2 shadow-pill sm:flex-row sm:items-center sm:rounded-full sm:pl-5"
-        noValidate
-      >
-        <div className="flex min-w-0 flex-1 items-center gap-3 px-3 sm:px-0">
-          <span className="flex shrink-0 items-center gap-1 text-muted-foreground">
-            <span
-              aria-hidden="true"
-              className="flex size-5 flex-col overflow-hidden rounded-[3px] border border-border"
-            >
-              <span className="flex-1 bg-accent" />
-              <span className="flex-1 bg-card" />
-              <span className="flex-1 bg-[oklch(0.55_0.13_150)]" />
-            </span>
-            <span className="text-sm font-medium text-foreground">+91</span>
-            <ChevronDown className="size-4" aria-hidden="true" />
-            <span className="sr-only">India, +91</span>
-          </span>
-          <span className="hidden h-6 w-px shrink-0 bg-border sm:block" />
-          <label htmlFor="hero-phone" className="sr-only">
-            Phone Number
-          </label>
-          <input
-            id="hero-phone"
-            name="phone"
-            type="tel"
-            inputMode="numeric"
-            autoComplete="tel"
-            placeholder="Phone Number"
-            aria-invalid={Boolean(error)}
-            aria-describedby={error ? "hero-phone-error" : undefined}
-            value={phone}
-            onChange={(e) => {
-              setPhone(e.target.value);
-              setError(null);
-            }}
-            className="h-12 w-full min-w-0 bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground"
-          />
-        </div>
-        <button
-          type="submit"
-          disabled={pending}
-          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02] disabled:opacity-70"
-        >
-          <Phone className="size-4" aria-hidden="true" />
-          {pending ? "Connecting…" : "Try an agent"}
-        </button>
-      </form>
+      <Dialog open={open} onOpenChange={handleOpenChange}>
+        <DialogTrigger asChild>
+          <button
+            type="button"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-pill transition-transform hover:scale-[1.02] sm:w-auto"
+          >
+            <Phone className="size-4" aria-hidden="true" />
+            Try an agent
+          </button>
+        </DialogTrigger>
+        <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
+          {submitted ? (
+            <div className="py-6 text-center">
+              <span className="mx-auto grid size-12 place-items-center rounded-full bg-accent-soft">
+                <PartyPopper className="size-5 text-accent" aria-hidden="true" />
+              </span>
+              <DialogHeader className="mt-4">
+                <DialogTitle className="text-center">Thanks — request received</DialogTitle>
+                <DialogDescription className="text-center">
+                  Our team will reach out shortly to connect you with a VoiceCare AI agent.
+                </DialogDescription>
+              </DialogHeader>
+            </div>
+          ) : (
+            <>
+              <DialogHeader>
+                <DialogTitle>Try a VoiceCare AI agent</DialogTitle>
+                <DialogDescription>
+                  Leave your details and we&apos;ll set up a personalized agent call.
+                </DialogDescription>
+              </DialogHeader>
 
-      <div aria-live="polite" className="mt-3 min-h-5 px-1 text-sm">
-        {error && (
-          <p id="hero-phone-error" className="text-destructive">
-            {error}
-          </p>
-        )}
-        {success && !error && (
-          <p className="text-accent">
-            Thanks! A VoiceCare AI agent will reach out shortly.
-          </p>
-        )}
-        {!error && !success && (
-          <p className="text-muted-foreground">
-            Enter your number and experience VoiceCare AI firsthand.
-          </p>
-        )}
-      </div>
+              <form onSubmit={onSubmit} className="mt-2 space-y-4" noValidate>
+                <div className="space-y-2">
+                  <Label htmlFor="agent-name">Name</Label>
+                  <Input id="agent-name" name="name" maxLength={100} autoComplete="name" />
+                  {errors['name'] && <p className="text-xs text-destructive">{errors['name']}</p>}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="agent-email">Email</Label>
+                  <Input
+                    id="agent-email"
+                    name="email"
+                    type="email"
+                    maxLength={255}
+                    autoComplete="email"
+                  />
+                  {errors['email'] && <p className="text-xs text-destructive">{errors['email']}</p>}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="agent-company">Company</Label>
+                  <Input
+                    id="agent-company"
+                    name="company"
+                    maxLength={120}
+                    autoComplete="organization"
+                  />
+                  {errors['company'] && <p className="text-xs text-destructive">{errors['company']}</p>}
+                </div>
+
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
+                >
+                  Submit request
+                </button>
+              </form>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      <p className="mt-3 px-1 text-sm text-muted-foreground">
+        Click to experience a VoiceCare AI agent firsthand.
+      </p>
     </div>
   );
 }
