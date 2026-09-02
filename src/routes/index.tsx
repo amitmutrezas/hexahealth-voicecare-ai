@@ -10,6 +10,8 @@ import { HowItWorks } from "@/components/landing/HowItWorks";
 import { BenefitStrip } from "@/components/landing/BenefitStrip";
 import { SafetySection } from "@/components/landing/SafetySection";
 import { FinalCTA } from "@/components/landing/FinalCTA";
+import { FAQ } from "@/components/landing/FAQ";
+
 
 import { Footer } from "@/components/landing/Footer";
 
