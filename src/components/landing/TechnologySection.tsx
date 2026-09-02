@@ -2,12 +2,13 @@ import { Globe, MessageSquare, Mic, User } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { TechnologyCard } from "./TechnologyCard";
 
+const FIRST_ROW = ["Hello", "Hindi", "മലയാളം"];
 const LANGUAGES = [
-  ["Hello", "Hindi", "മലയാളം"],
   ["Tamil", "Bengali", "French", "Kannada"],
   ["नमस्कार", "తెలుగు", "Mandarin", "Hola"],
   ["ગુજરાતી", "Russian"],
 ];
+
 
 function LanguageCloud() {
   return (
