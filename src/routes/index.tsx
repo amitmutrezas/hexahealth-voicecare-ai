@@ -8,7 +8,9 @@ import { UseCases } from "@/components/landing/UseCases";
 import { CallPowers } from "@/components/landing/CallPowers";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { BenefitStrip } from "@/components/landing/BenefitStrip";
+import { SafetySection } from "@/components/landing/SafetySection";
 import { FinalCTA } from "@/components/landing/FinalCTA";
+
 import { Footer } from "@/components/landing/Footer";
 
 const TITLE = "VoiceCare AI by HexaHealth — AI Voice Agents for Healthcare";
