@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 
 const NAV = [
   { label: "Product", id: "product" },
-  { label: "Use Cases", id: "use-cases" },
   { label: "Technology", id: "technology" },
+  { label: "Use Cases", id: "use-cases" },
   { label: "How it works", id: "how-it-works" },
   { label: "About Us", id: "about" },
 ];
