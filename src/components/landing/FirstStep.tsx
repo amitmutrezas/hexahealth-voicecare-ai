@@ -47,9 +47,9 @@ export function FirstStep() {
             <Reveal
               key={r.stat}
               delay={i * 70}
-              className="contents"
+              className="lg:col-span-3"
             >
-              <div className="grid gap-3 lg:col-span-3 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
+              <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
                 <article className="flex items-start gap-3 rounded-2xl border border-border-warm bg-card p-4 shadow-soft">
                   <AlertCircle className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
                   <p className="text-sm leading-relaxed text-muted-foreground">{r.problem}</p>
