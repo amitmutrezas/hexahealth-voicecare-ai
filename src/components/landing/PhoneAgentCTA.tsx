@@ -47,9 +47,15 @@ export function PhoneAgentCTA() {
       >
         <div className="flex min-w-0 flex-1 items-center gap-3 px-3 sm:px-0">
           <span className="flex shrink-0 items-center gap-1 text-muted-foreground">
-            <span className="text-lg leading-none" aria-hidden="true">
-              🇮🇳
+            <span
+              aria-hidden="true"
+              className="flex size-5 flex-col overflow-hidden rounded-[3px] border border-border"
+            >
+              <span className="flex-1 bg-accent" />
+              <span className="flex-1 bg-card" />
+              <span className="flex-1 bg-[oklch(0.55_0.13_150)]" />
             </span>
+            <span className="text-sm font-medium text-foreground">+91</span>
             <ChevronDown className="size-4" aria-hidden="true" />
             <span className="sr-only">India, +91</span>
           </span>

@@ -51,7 +51,7 @@ export function Header() {
         scrolled ? "border-b border-border shadow-soft" : "border-b border-transparent",
       )}
     >
-      <div className="mx-auto grid max-w-[1320px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-3.5 lg:px-8">
+      <div className="mx-auto grid max-w-[1320px] grid-cols-[minmax(0,1fr)_auto] lg:grid-cols-[auto_1fr_auto] items-center gap-4 px-5 py-3.5 lg:px-8">
         <a
           href="#top"
           className="flex min-w-0 flex-col leading-none"

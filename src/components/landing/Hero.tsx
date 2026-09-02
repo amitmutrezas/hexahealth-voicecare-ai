@@ -8,21 +8,21 @@ const BUBBLES = [
     role: "VoiceCare AI",
     text: "Hi, this is VoiceCare AI. How can I help you today?",
     tone: "ai" as const,
-    position: "left-0 top-[22%]",
+    position: "left-0 top-[24%]",
     delay: "0s",
   },
   {
     role: "Patient",
     text: "I want to book an appointment with a cardiologist.",
     tone: "patient" as const,
-    position: "left-[12%] top-[42%]",
+    position: "left-[8%] top-[46%]",
     delay: "1.1s",
   },
   {
     role: "VoiceCare AI",
     text: "Sure, I can help with that. May I know your preferred date?",
     tone: "ai" as const,
-    position: "left-[3%] top-[62%]",
+    position: "left-0 top-[68%]",
     delay: "2.2s",
   },
 ];
@@ -81,7 +81,7 @@ export function Hero() {
               alt="A patient speaking with a VoiceCare AI voice agent on her phone"
               width={1024}
               height={1280}
-              className="absolute inset-x-[14%] bottom-0 top-[4%] rounded-[2rem] object-cover object-top"
+              className="absolute bottom-0 right-0 top-[4%] w-[64%] rounded-[2rem] object-cover object-top"
             />
 
             <div className="animate-float absolute right-[6%] top-0 grid size-12 place-items-center rounded-full border border-border bg-card shadow-soft">
@@ -89,7 +89,7 @@ export function Hero() {
             </div>
 
             <div
-              className="animate-float absolute left-[26%] top-[12%] rounded-full border border-border bg-card px-4 py-2 shadow-soft"
+              className="animate-float absolute left-[18%] top-[10%] rounded-full border border-border bg-card px-4 py-2 shadow-soft"
               style={{ animationDelay: "0.6s" }}
             >
               <Waveform />
@@ -98,7 +98,7 @@ export function Hero() {
             {BUBBLES.map((b) => (
               <div
                 key={b.text}
-                className={`animate-float absolute w-[62%] max-w-[268px] rounded-2xl border px-4 py-3 shadow-soft ${b.position} ${
+                className={`animate-float absolute w-[58%] max-w-[250px] rounded-2xl border px-4 py-3 shadow-soft ${b.position} ${
                   b.tone === "ai"
                     ? "border-border bg-card"
                     : "border-accent/20 bg-accent-soft"
