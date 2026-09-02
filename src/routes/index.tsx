@@ -59,7 +59,9 @@ function Index() {
         <CallPowers />
         <HowItWorks />
         <BenefitStrip />
+        <SafetySection />
         <FinalCTA />
+
       </main>
       <Footer />
     </div>
