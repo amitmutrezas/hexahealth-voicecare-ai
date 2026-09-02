@@ -51,8 +51,8 @@ function Index() {
       <main>
         <Hero />
         <Metrics />
-        <FirstStep />
         <TechnologySection />
+        <FirstStep />
         <UseCases />
         <CallPowers />
         <HowItWorks />
