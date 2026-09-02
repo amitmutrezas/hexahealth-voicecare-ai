@@ -26,7 +26,7 @@ const ROWS = [
 
 export function FirstStep() {
   return (
-    <section id="first-step" className="bg-warm-deep">
+    <section id="first-step" className="bg-background">
       <div className="mx-auto max-w-[1180px] px-5 py-20 lg:px-8 lg:py-28">
         <Reveal className="text-center">
           <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-[2.5rem]">
