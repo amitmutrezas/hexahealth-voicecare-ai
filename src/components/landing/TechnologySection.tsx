@@ -185,7 +185,7 @@ export function TechnologySection() {
       <div className="mx-auto max-w-[1320px] px-5 py-20 lg:px-8 lg:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-[2.75rem]">
-            Frontier Voice Tech, Built for India
+            Frontier Voice Tech, Built for Indian Healthcare
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             Production-grade voice intelligence designed for the scale, languages and
