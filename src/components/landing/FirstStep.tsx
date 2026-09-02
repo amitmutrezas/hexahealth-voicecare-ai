@@ -14,12 +14,12 @@ const ROWS = [
   },
   {
     problem: "Follow-ups slip, and deals quietly lose momentum.",
-    stat: "85%",
+    stat: "100%",
     gain: "Follow-ups happen automatically.",
   },
   {
     problem: "Volume spikes hit, and pipeline leaks grow.",
-    stat: "45%",
+    stat: "100%",
     gain: "Pipelines stay steady even in peak demand.",
   },
 ];
