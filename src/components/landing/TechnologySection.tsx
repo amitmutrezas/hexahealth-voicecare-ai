@@ -14,7 +14,7 @@ function LanguageCloud() {
   return (
     <div className="flex flex-col items-center gap-2 text-lg sm:text-xl">
       <div className="flex flex-wrap items-baseline justify-center gap-x-5 gap-y-2">
-        {LANGUAGES[0].map((w, i) => (
+        {FIRST_ROW.map((w, i) => (
           <span
             key={w}
             className="animate-word text-muted-foreground"
@@ -25,7 +25,8 @@ function LanguageCloud() {
         ))}
         <span className="font-medium text-accent">20+ languages</span>
       </div>
-      {LANGUAGES.slice(1).map((row, r) => (
+      {LANGUAGES.map((row, r) => (
+
         <div key={r} className="flex flex-wrap justify-center gap-x-5 gap-y-2">
           {row.map((w, i) => (
             <span
