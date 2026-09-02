@@ -103,9 +103,8 @@ export function Header() {
             aria-expanded={open}
             className="inline-flex size-10 items-center justify-center rounded-full border border-border text-foreground lg:hidden"
           >
-            {open ? <Menu className="size-5" /> : <X className="hidden" />}
-            {open ? null : null}
-            {open ? null : <Menu className="size-5" />}
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+
           </button>
         </div>
       </div>
