@@ -7,10 +7,14 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
+const phoneSchema = z
+  .string()
+  .trim()
+  .regex(/^[6-9]\d{9}$/, "Enter a valid 10-digit Indian mobile number");
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -19,9 +23,22 @@ const schema = z.object({
 });
 
 export function PhoneAgentCTA() {
+  const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const onPhoneSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const result = phoneSchema.safeParse(phone.replace(/[\s-]/g, ""));
+    if (!result.success) {
+      setPhoneError(result.error.issues[0]?.message ?? "Enter a valid number");
+      return;
+    }
+    setPhoneError("");
+    setOpen(true);
+  };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,16 +71,42 @@ export function PhoneAgentCTA() {
 
   return (
     <div className="w-full max-w-xl">
+      <form
+        onSubmit={onPhoneSubmit}
+        className="flex flex-col gap-3 rounded-full border border-border bg-card p-2 shadow-pill sm:flex-row sm:items-center"
+        noValidate
+      >
+        <div className="flex flex-1 items-center gap-2 px-3">
+          <span className="flex h-4 w-6 shrink-0 flex-col overflow-hidden rounded-[2px] ring-1 ring-border" aria-hidden="true">
+            <span className="h-1/3 bg-[#FF9933]" />
+            <span className="h-1/3 bg-white" />
+            <span className="h-1/3 bg-[#138808]" />
+          </span>
+          <span className="text-sm text-muted-foreground">+91</span>
+          <Input
+            id="agent-phone"
+            name="phone"
+            type="tel"
+            inputMode="numeric"
+            aria-label="Phone number"
+            placeholder="Enter your phone number"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            maxLength={14}
+            className="border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
+          />
+        </div>
+        <button
+          type="submit"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
+        >
+          <Phone className="size-4" aria-hidden="true" />
+          Try an agent
+        </button>
+      </form>
+      {phoneError && <p className="mt-2 px-4 text-xs text-destructive">{phoneError}</p>}
+
       <Dialog open={open} onOpenChange={handleOpenChange}>
-        <DialogTrigger asChild>
-          <button
-            type="button"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-pill transition-transform hover:scale-[1.02] sm:w-auto"
-          >
-            <Phone className="size-4" aria-hidden="true" />
-            Try an agent
-          </button>
-        </DialogTrigger>
         <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
           {submitted ? (
             <div className="py-6 text-center">
@@ -71,9 +114,9 @@ export function PhoneAgentCTA() {
                 <PartyPopper className="size-5 text-accent" aria-hidden="true" />
               </span>
               <DialogHeader className="mt-4">
-                <DialogTitle className="text-center">Thanks — request received</DialogTitle>
+                <DialogTitle className="text-center">You&apos;re all set</DialogTitle>
                 <DialogDescription className="text-center">
-                  Our team will reach out shortly to connect you with a VoiceCare AI agent.
+                  An AI agent will call you on +91 {phone} shortly.
                 </DialogDescription>
               </DialogHeader>
             </div>
@@ -82,7 +125,7 @@ export function PhoneAgentCTA() {
               <DialogHeader>
                 <DialogTitle>Try a VoiceCare AI agent</DialogTitle>
                 <DialogDescription>
-                  Leave your details and we&apos;ll set up a personalized agent call.
+                  A few details and our AI agent will call you on +91 {phone}.
                 </DialogDescription>
               </DialogHeader>
 
@@ -120,7 +163,7 @@ export function PhoneAgentCTA() {
                   type="submit"
                   className="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02]"
                 >
-                  Submit request
+                  Get a call from the AI agent
                 </button>
               </form>
             </>
@@ -129,7 +172,7 @@ export function PhoneAgentCTA() {
       </Dialog>
 
       <p className="mt-3 px-1 text-sm text-muted-foreground">
-        Click to experience a VoiceCare AI agent firsthand.
+        Enter your number and our AI agent will call you.
       </p>
     </div>
   );
