@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { CalendarCheck, ChevronRight, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DemoFormDialog } from "./DemoFormDialog";
+
 
 const NAV = [
   { label: "Product", id: "product" },
@@ -88,15 +90,18 @@ export function Header() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          <button
-            onClick={() => scrollToId("demo")}
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition-transform hover:scale-[1.03] sm:px-5"
-          >
-            <CalendarCheck className="size-4" aria-hidden="true" />
-            <span className="hidden sm:inline">Book a demo</span>
-            <span className="sm:hidden">Demo</span>
-            <ChevronRight className="size-4" aria-hidden="true" />
-          </button>
+          <DemoFormDialog>
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition-transform hover:scale-[1.03] sm:px-5"
+            >
+              <CalendarCheck className="size-4" aria-hidden="true" />
+              <span className="hidden sm:inline">Book Demo</span>
+              <span className="sm:hidden">Demo</span>
+              <ChevronRight className="size-4" aria-hidden="true" />
+            </button>
+          </DemoFormDialog>
+
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}

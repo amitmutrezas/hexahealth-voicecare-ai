@@ -1,5 +1,7 @@
 import { CalendarCheck, ChevronRight } from "lucide-react";
 import { Reveal } from "./Reveal";
+import { DemoFormDialog } from "./DemoFormDialog";
+
 
 export function FinalCTA() {
   return (
@@ -16,15 +18,18 @@ export function FinalCTA() {
                 patient experience.
               </p>
             </div>
-            <a
-              href="mailto:hello@hexahealth.com?subject=VoiceCare%20AI%20demo%20request"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03] lg:w-auto"
-            >
-              <CalendarCheck className="size-4" aria-hidden="true" />
-              Book a demo
-              <ChevronRight className="size-4" aria-hidden="true" />
-            </a>
+            <DemoFormDialog>
+              <button
+                type="button"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03] lg:w-auto"
+              >
+                <CalendarCheck className="size-4" aria-hidden="true" />
+                Book Demo
+                <ChevronRight className="size-4" aria-hidden="true" />
+              </button>
+            </DemoFormDialog>
           </div>
+
         </Reveal>
       </div>
     </section>
