@@ -61,6 +61,8 @@ function Index() {
         <BenefitStrip />
         <SafetySection />
         <FinalCTA />
+        <FAQ />
+
 
       </main>
       <Footer />
