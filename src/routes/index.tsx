@@ -1,24 +1,61 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/landing/Header";
+import { Hero } from "@/components/landing/Hero";
+import { Metrics } from "@/components/landing/Metrics";
+import { TechnologySection } from "@/components/landing/TechnologySection";
+import { UseCases } from "@/components/landing/UseCases";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { BenefitStrip } from "@/components/landing/BenefitStrip";
+import { FinalCTA } from "@/components/landing/FinalCTA";
+import { Footer } from "@/components/landing/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const TITLE = "VoiceCare AI by HexaHealth — AI Voice Agents for Healthcare";
+const DESCRIPTION =
+  "VoiceCare AI automates patient conversations over calls — appointments, follow-ups, lab results and billing — so care teams can focus on care, not calls.";
+
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "VoiceCare AI",
+          applicationCategory: "HealthApplication",
+          description: DESCRIPTION,
+          publisher: { "@type": "Organization", name: "HexaHealth" },
+        }),
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div id="top" className="min-h-screen bg-background">
+      <Header />
+      <main>
+        <Hero />
+        <Metrics />
+        <TechnologySection />
+        <UseCases />
+        <HowItWorks />
+        <BenefitStrip />
+        <FinalCTA />
+      </main>
+      <Footer />
     </div>
   );
 }
