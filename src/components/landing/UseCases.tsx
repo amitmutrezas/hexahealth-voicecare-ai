@@ -1,57 +1,45 @@
 import {
-  Bell,
-  CalendarDays,
-  FlaskConical,
-  PhoneCall,
-  ShieldCheck,
-  Star,
+  CalendarCheck,
+  Clock,
+  PhoneOutgoing,
+  Target,
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const CASES: { icon: LucideIcon; title: string; text: string }[] = [
   {
-    icon: CalendarDays,
-    title: "Appointment Scheduling",
-    text: "Book, reschedule and cancel appointments seamlessly.",
+    icon: Target,
+    title: "Lead Qualification & Intent Detection",
+    text: "AI listens for intent, urgency, objection cues, budget signals, and readiness to move. It filters noise and surfaces the leads worth acting on — before your team even picks up the phone.",
   },
   {
-    icon: PhoneCall,
-    title: "Call Qualification",
-    text: "Automate patient screening and qualification calls.",
+    icon: CalendarCheck,
+    title: "Instant Bookings & Scheduling",
+    text: "The AI books demos, appointments, visits, or callbacks instantly. It sends reminders automatically, cutting no-shows and ensuring smooth coordination without human effort.",
   },
   {
-    icon: Bell,
-    title: "Follow-ups & Reminders",
-    text: "Reduce no-shows with timely reminders and follow-ups.",
+    icon: Clock,
+    title: "24/7 Inquiry Handling",
+    text: "From pricing to product questions, AI gives consistent, clear answers at any hour. It removes queues, reduces dropped inquiries, and supports global audiences in multiple languages.",
   },
   {
-    icon: FlaskConical,
-    title: "Lab & Test Results",
-    text: "Deliver results and next steps securely and compliantly.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Insurance & Billing Support",
-    text: "Handle policy checks, billing queries and payment reminders.",
-  },
-  {
-    icon: Star,
-    title: "Patient Feedback & Surveys",
-    text: "Collect feedback and measure patient satisfaction.",
+    icon: PhoneOutgoing,
+    title: "Follow-Ups That Never Slip",
+    text: "Automate follow-ups with personalized calls, keeping customers engaged and informed at every stage of their journey.",
   },
 ];
 
 function UseCaseCard({ icon: Icon, title, text }: (typeof CASES)[number]) {
   return (
-    <article className="group h-full rounded-2xl border border-border-warm bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift">
+    <article className="group h-full rounded-2xl border border-border-warm bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift">
       <span className="grid size-11 place-items-center rounded-xl bg-accent-soft">
         <Icon className="size-5 text-accent" aria-hidden="true" />
       </span>
-      <h3 className="mt-5 text-sm font-semibold transition-colors group-hover:text-accent">
+      <h3 className="mt-5 text-lg font-semibold tracking-[-0.02em] transition-colors group-hover:text-accent">
         {title}
       </h3>
-      <p className="mt-2 text-[0.8125rem] leading-relaxed text-muted-foreground">{text}</p>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p>
     </article>
   );
 }
@@ -72,7 +60,7 @@ export function UseCases() {
           </p>
         </Reveal>
 
-        <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {CASES.map((c, i) => (
             <Reveal as="li" key={c.title} delay={i * 60} className="h-full">
               <UseCaseCard {...c} />

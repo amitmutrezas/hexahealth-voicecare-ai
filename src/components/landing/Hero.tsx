@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
 const BUBBLES = [
   {
     role: "VoiceCare AI",
-    text: "Hi, this is VoiceCare AI. How can I help you today?",
+    text: "Hi, this is Bhawna from HexaHealth. How can I help you today?",
     tone: "ai" as const,
     position: "left-0 top-[24%]",
     delay: "0s",

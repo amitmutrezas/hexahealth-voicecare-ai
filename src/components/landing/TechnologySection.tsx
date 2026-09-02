@@ -4,9 +4,9 @@ import { TechnologyCard } from "./TechnologyCard";
 
 const FIRST_ROW = ["Hello", "Hindi", "മലയാളം"];
 const LANGUAGES = [
-  ["Tamil", "Bengali", "French", "Kannada"],
-  ["नमस्कार", "తెలుగు", "Mandarin", "Hola"],
-  ["ગુજરાતી", "Russian"],
+  ["Tamil", "Bengali", "Telugu", "Kannada"],
+  ["नमस्कार", "తెలుగు", "Malayalam", "English"],
+  ["ગુજરાતી", "Marathi"],
 ];
 
 
@@ -102,7 +102,7 @@ function ScaleGrid() {
         className="absolute bottom-10 left-10 h-1.5 w-8 rotate-[24deg] rounded-full bg-accent/40"
       />
       <div className="relative text-center">
-        <p className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">120K+</p>
+        <p className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">100K+</p>
         <p className="mt-1 text-[0.625rem] tracking-[0.22em] text-muted-foreground uppercase">
           Interactions / hour
         </p>
@@ -196,8 +196,8 @@ export function TechnologySection() {
         <div className="mt-14 grid gap-5 lg:grid-cols-2">
           <Reveal className="h-full">
             <TechnologyCard
-              title="Global Citizens"
-              description="Voice agents that inherently understand 20+ languages, with high accuracy across Indian and global languages."
+              title="Regional Languages"
+              description="Voice agents that inherently understand 20+ languages, with high accuracy across all Indian languages."
             >
               <LanguageCloud />
             </TechnologyCard>
