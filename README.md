@@ -2,7 +2,9 @@
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://hexahealth-voicecare-ai.lovable.app
+**Live app**: https://voicecareai.hexahealth.com/
+
+**Prototype:** https://hexahealth-voicecare-ai.lovable.app
 
 ## Build with Lovable
 
